@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -9,231 +8,470 @@
 <meta name="apple-mobile-web-app-title" content="律">
 <title>律</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;700;900&display=swap');
 
 :root {
-–bg: #0d0d0d;
-–card: #161616;
-–border: #2a2a2a;
-–gold: #c9a84c;
-–gold-dim: #7a6330;
-–text: #e8e4dc;
-–text-dim: #555;
-–green: #3a6b4a;
-–green-bright: #4daa6e;
-–red: #6b2e2e;
-–red-bright: #cc5555;
-–radius: 16px;
+  --bg: #0e0c0a;
+  --bg2: #131109;
+  --card: #1a1714;
+  --border: #2e2a24;
+  --border2: #3d3830;
+  --ink: #e8e0d0;
+  --ink-dim: #7a7060;
+  --ink-faint: #3a352c;
+  --sumi: #c8b896;
+  --sumi-dim: #6b5f48;
+  --red-ink: #8b3a2a;
+  --red-bright: #c05a3a;
+  --red-bg: #1e0f0a;
+  --green-ink: #2a5a3a;
+  --green-bright: #4a8a5a;
+  --green-bg: #0a1a10;
+  --radius: 12px;
 }
 
-- { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
 body {
-background: var(–bg);
-color: var(–text);
-font-family: ‘Noto Serif JP’, serif;
-min-height: 100vh;
-padding-bottom: 60px;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Noto Serif JP', serif;
+  min-height: 100vh;
+  padding-bottom: 60px;
+  /* 和紙テクスチャ風の微細なノイズ */
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(180,140,80,0.03) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(120,100,60,0.04) 0%, transparent 50%);
 }
 
+/* 墨の滲みライン */
+.ink-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border2) 20%, var(--border2) 80%, transparent);
+  opacity: 0.6;
+}
+
+/* HEADER */
 .header {
-padding: 52px 20px 18px;
-background: linear-gradient(180deg, #111 0%, var(–bg) 100%);
-border-bottom: 1px solid var(–border);
-display: flex;
-justify-content: space-between;
-align-items: flex-end;
+  padding: 56px 24px 20px;
+  position: relative;
+  overflow: hidden;
 }
-.header h1 { font-size: 30px; font-weight: 700; color: var(–gold); letter-spacing: 0.1em; }
-.header .date { font-size: 12px; color: var(–text-dim); letter-spacing: 0.1em; }
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(180deg, rgba(200,160,80,0.04) 0%, transparent 100%);
+  pointer-events: none;
+}
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.title-block {}
+.header h1 {
+  font-size: 48px;
+  font-weight: 900;
+  color: var(--sumi);
+  letter-spacing: 0.15em;
+  line-height: 1;
+  text-shadow: 0 2px 20px rgba(200,160,80,0.15);
+}
+.header .subtitle {
+  font-size: 10px;
+  color: var(--ink-dim);
+  letter-spacing: 0.3em;
+  margin-top: 4px;
+  font-weight: 300;
+}
+.header .date {
+  font-size: 12px;
+  color: var(--ink-dim);
+  letter-spacing: 0.1em;
+  font-weight: 300;
+  text-align: right;
+  line-height: 1.6;
+}
 
+/* 装飾的な縦線 */
+.deco-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(180deg, transparent, var(--sumi-dim), transparent);
+  margin: 0 auto 0;
+}
+
+/* TABS */
 .tabs {
-display: flex;
-background: var(–bg);
-border-bottom: 1px solid var(–border);
-position: sticky;
-top: 0;
-z-index: 20;
+  display: flex;
+  background: var(--bg);
+  position: sticky;
+  top: 0;
+  z-index: 20;
 }
 .tab {
-flex: 1;
-padding: 13px 0;
-text-align: center;
-font-size: 12px;
-color: var(–text-dim);
-letter-spacing: 0.1em;
-border-bottom: 2px solid transparent;
-cursor: pointer;
-font-family: ‘Noto Serif JP’, serif;
-transition: all 0.2s;
+  flex: 1;
+  padding: 14px 0;
+  text-align: center;
+  font-size: 11px;
+  color: var(--ink-dim);
+  letter-spacing: 0.2em;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 300;
+  transition: all 0.3s;
+  position: relative;
 }
-.tab.active { color: var(–gold); border-bottom-color: var(–gold); }
+.tab.active {
+  color: var(--sumi);
+  font-weight: 700;
+}
+.tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 20%; right: 20%;
+  height: 1px;
+  background: var(--sumi);
+}
 
+/* PAGES */
 .page { display: none; }
 .page.active { display: block; }
 
-/* TODAY */
-#page-today { padding: 20px; }
+/* ===== TODAY PAGE ===== */
+#page-today { padding: 20px 18px; }
 
 .habit-block {
-background: var(–card);
-border: 1px solid var(–border);
-border-radius: var(–radius);
-padding: 20px;
-margin-bottom: 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px 20px;
+  margin-bottom: 14px;
+  position: relative;
+  overflow: hidden;
 }
+.habit-block::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 2px; height: 100%;
+  background: linear-gradient(180deg, transparent, var(--sumi-dim), transparent);
+  opacity: 0.5;
+}
+
 .habit-header {
-display: flex;
-justify-content: space-between;
-align-items: center;
-margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 18px;
 }
-.habit-name { font-size: 20px; font-weight: 700; letter-spacing: 0.05em; }
+.habit-name {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.habit-name .fire { font-size: 14px; }
 .streak-info { text-align: right; }
-.streak-num { font-size: 26px; font-weight: 700; color: var(–gold); line-height: 1; }
-.streak-label { font-size: 10px; color: var(–text-dim); letter-spacing: 0.05em; }
+.streak-num {
+  font-size: 30px;
+  font-weight: 900;
+  color: var(--sumi);
+  line-height: 1;
+  text-shadow: 0 0 20px rgba(200,160,80,0.2);
+}
+.streak-label { font-size: 10px; color: var(--ink-dim); letter-spacing: 0.1em; font-weight: 300; }
 
 .big-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .big-btn {
-padding: 22px 10px;
-border-radius: 12px;
-border: 2px solid var(–border);
-background: #1e1e1e;
-color: var(–text-dim);
-font-size: 17px;
-font-family: ‘Noto Serif JP’, serif;
-letter-spacing: 0.1em;
-cursor: pointer;
-transition: all 0.15s;
-text-align: center;
+  padding: 20px 8px;
+  border-radius: 10px;
+  border: 1px solid var(--border2);
+  background: var(--bg2);
+  color: var(--ink-dim);
+  font-size: 15px;
+  font-family: 'Noto Serif JP', serif;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+  font-weight: 300;
 }
-.big-btn.ok { background: var(–green); border-color: var(–green-bright); color: #aaffcc; font-weight: 700; }
-.big-btn.ng { background: var(–red); border-color: var(–red-bright); color: #ffaaaa; font-weight: 700; }
+.big-btn.ok {
+  background: var(--green-bg);
+  border-color: var(--green-ink);
+  color: #8ac8a0;
+  font-weight: 700;
+  box-shadow: inset 0 0 20px rgba(42,90,58,0.3);
+}
+.big-btn.ng {
+  background: var(--red-bg);
+  border-color: var(--red-ink);
+  color: #c08878;
+  font-weight: 700;
+  box-shadow: inset 0 0 20px rgba(139,58,42,0.3);
+}
+.big-btn:active { transform: scale(0.97); }
 
-.rate-bar-wrap { margin-top: 14px; }
-.rate-label { display: flex; justify-content: space-between; font-size: 11px; color: var(–text-dim); margin-bottom: 5px; }
-.rate-bar { height: 4px; background: var(–border); border-radius: 2px; overflow: hidden; }
-.rate-fill { height: 100%; background: var(–gold); border-radius: 2px; transition: width 0.4s ease; }
+.rate-bar-wrap { margin-top: 16px; }
+.rate-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--ink-dim);
+  margin-bottom: 6px;
+  letter-spacing: 0.1em;
+  font-weight: 300;
+}
+.rate-bar {
+  height: 2px;
+  background: var(--ink-faint);
+  border-radius: 1px;
+  overflow: hidden;
+}
+.rate-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--sumi-dim), var(--sumi));
+  border-radius: 1px;
+  transition: width 0.6s ease;
+}
 
-/* CALENDAR PAGE */
-.cal-page { padding: 20px; }
+/* ===== CALENDAR PAGE ===== */
+.cal-page { padding: 20px 18px; }
 
-.summary-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
-.summary-card { background: var(–card); border: 1px solid var(–border); border-radius: 12px; padding: 14px 10px; text-align: center; }
-.summary-card .s-val { font-size: 26px; font-weight: 700; color: var(–gold); line-height: 1; }
-.summary-card .s-lbl { font-size: 10px; color: var(–text-dim); margin-top: 4px; letter-spacing: 0.05em; }
+.summary-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.summary-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 10px;
+  text-align: center;
+  position: relative;
+}
+.summary-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 20%; right: 20%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--sumi-dim), transparent);
+  opacity: 0.4;
+}
+.summary-card .s-val {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--sumi);
+  line-height: 1;
+}
+.summary-card .s-lbl {
+  font-size: 9px;
+  color: var(--ink-dim);
+  margin-top: 5px;
+  letter-spacing: 0.1em;
+  font-weight: 300;
+}
 
-.cal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
-.cal-month { font-size: 15px; font-weight: 700; color: var(–text); letter-spacing: 0.05em; }
+.cal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.cal-month {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 0.1em;
+}
 .cal-nav-btn {
-background: var(–card); border: 1px solid var(–border); color: var(–text-dim);
-width: 32px; height: 32px; border-radius: 8px; font-size: 16px; cursor: pointer;
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--ink-dim);
+  width: 30px; height: 30px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
 }
+.cal-nav-btn:active { background: var(--card); }
 
-.cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
-.cal-dow { text-align: center; font-size: 10px; color: var(–text-dim); padding: 4px 0 6px; }
+.cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.cal-dow {
+  text-align: center;
+  font-size: 9px;
+  color: var(--ink-dim);
+  padding: 4px 0 8px;
+  letter-spacing: 0.05em;
+  font-weight: 300;
+}
 .cal-day {
-aspect-ratio: 1; border-radius: 10px; display: flex; align-items: center; justify-content: center;
-font-size: 13px; color: var(–text-dim); background: var(–card); cursor: pointer;
-transition: all 0.15s; border: 1px solid transparent;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: var(--ink-dim);
+  background: var(--card);
+  cursor: pointer;
+  transition: all 0.15s;
+  border: 1px solid transparent;
+  font-weight: 300;
 }
 .cal-day.empty { background: transparent; cursor: default; border: none; }
-.cal-day.ok { background: var(–green); color: #aaffcc; font-weight: 700; border-color: var(–green-bright); }
-.cal-day.ng { background: var(–red); color: #ffaaaa; border-color: var(–red-bright); }
-.cal-day.today-mark { border-color: var(–gold) !important; }
-.cal-day:not(.empty):active { transform: scale(0.9); }
+.cal-day.ok {
+  background: var(--green-bg);
+  color: #7ab890;
+  border-color: var(--green-ink);
+  font-weight: 700;
+}
+.cal-day.ng {
+  background: var(--red-bg);
+  color: #b07868;
+  border-color: var(--red-ink);
+}
+.cal-day.today-mark {
+  border-color: var(--sumi) !important;
+  color: var(--sumi);
+}
+.cal-day:not(.empty):active { transform: scale(0.88); }
 
-.cal-legend { display: flex; gap: 16px; margin-top: 14px; justify-content: center; }
-.legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(–text-dim); }
-.legend-dot { width: 10px; height: 10px; border-radius: 3px; }
+.cal-hint {
+  text-align: center;
+  font-size: 10px;
+  color: var(--ink-faint);
+  margin-top: 16px;
+  letter-spacing: 0.15em;
+  font-weight: 300;
+}
+
+.cal-legend {
+  display: flex;
+  gap: 16px;
+  margin-top: 14px;
+  justify-content: center;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  color: var(--ink-dim);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+}
+.legend-dot { width: 8px; height: 8px; border-radius: 2px; }
 
 /* MODAL */
 .modal-overlay {
-display: none; position: fixed; inset: 0;
-background: rgba(0,0,0,0.7); z-index: 100; align-items: flex-end;
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.75);
+  z-index: 100;
+  align-items: flex-end;
+  backdrop-filter: blur(2px);
 }
 .modal-overlay.show { display: flex; }
 .modal {
-background: #1a1a1a; border-radius: 20px 20px 0 0;
-padding: 24px 20px 44px; width: 100%; border-top: 1px solid var(–border);
+  background: #1a1714;
+  border-radius: 18px 18px 0 0;
+  padding: 28px 20px 48px;
+  width: 100%;
+  border-top: 1px solid var(--border2);
 }
-.modal-title { font-size: 16px; font-weight: 700; color: var(–gold); margin-bottom: 20px; text-align: center; }
-.modal-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.modal-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--sumi);
+  margin-bottom: 22px;
+  text-align: center;
+  letter-spacing: 0.1em;
+}
+.modal-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 10px; }
 .modal-btn {
-padding: 18px; border-radius: 12px; border: 2px solid var(–border);
-background: #222; color: var(–text-dim); font-size: 16px;
-font-family: ‘Noto Serif JP’, serif; cursor: pointer; transition: all 0.15s;
+  padding: 18px;
+  border-radius: 10px;
+  border: 1px solid var(--border2);
+  background: var(--bg2);
+  color: var(--ink-dim);
+  font-size: 15px;
+  font-family: 'Noto Serif JP', serif;
+  cursor: pointer;
+  transition: all 0.15s;
+  letter-spacing: 0.1em;
+  font-weight: 300;
 }
-.modal-btn.ok { background: var(–green); border-color: var(–green-bright); color: #aaffcc; font-weight: 700; }
-.modal-btn.ng { background: var(–red); border-color: var(–red-bright); color: #ffaaaa; font-weight: 700; }
-.modal-cancel {
-width: 100%; padding: 14px; border-radius: 12px; border: 1px solid var(–border);
-background: transparent; color: var(–text-dim); font-size: 14px;
-font-family: ‘Noto Serif JP’, serif; cursor: pointer; margin-top: 8px; display: block;
+.modal-btn.ok {
+  background: var(--green-bg);
+  border-color: var(--green-ink);
+  color: #8ac8a0;
+  font-weight: 700;
+}
+.modal-btn.ng {
+  background: var(--red-bg);
+  border-color: var(--red-ink);
+  color: #c08878;
+  font-weight: 700;
+}
+.modal-sub {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--ink-dim);
+  font-size: 12px;
+  font-family: 'Noto Serif JP', serif;
+  cursor: pointer;
+  margin-top: 8px;
+  display: block;
+  letter-spacing: 0.1em;
+  font-weight: 300;
+}
+
+/* 区切り装飾 */
+.ornament {
+  text-align: center;
+  color: var(--ink-faint);
+  font-size: 12px;
+  margin: 4px 0 16px;
+  letter-spacing: 0.3em;
 }
 </style>
-
 </head>
 <body>
 
 <div class="header">
-  <h1>律</h1>
-  <div class="date" id="todayLabel"></div>
+  <div class="header-inner">
+    <div class="title-block">
+      <h1>律</h1>
+      <div class="subtitle">SELF DISCIPLINE</div>
+    </div>
+    <div class="date" id="todayLabel"></div>
+  </div>
 </div>
+<div class="ink-line"></div>
 
 <div class="tabs">
   <div class="tab active" onclick="switchTab('today')">今日</div>
-  <div class="tab" onclick="switchTab('toilet')">トイレ掃除</div>
+  <div class="tab" onclick="switchTab('toilet')">掃除</div>
   <div class="tab" onclick="switchTab('drink')">禁酒</div>
+  <div class="tab" onclick="switchTab('trade')">相場</div>
 </div>
 
 <!-- TODAY -->
-
 <div class="page active" id="page-today">
-  <div style="padding:20px">
-    <div class="habit-block">
-      <div class="habit-header">
-        <div class="habit-name" id="toilet-name">トイレ掃除</div>
-        <div class="streak-info">
-          <div class="streak-num" id="streak-toilet">0</div>
-          <div class="streak-label">日連続</div>
-        </div>
-      </div>
-      <div class="big-buttons">
-        <button class="big-btn" id="tbtn-ok" onclick="setToday('toilet','ok')">✓ 達成</button>
-        <button class="big-btn" id="tbtn-ng" onclick="setToday('toilet','ng')">✗ 未達成</button>
-      </div>
-      <div class="rate-bar-wrap">
-        <div class="rate-label"><span>今月の達成率</span><span id="rate-toilet">0%</span></div>
-        <div class="rate-bar"><div class="rate-fill" id="rbar-toilet" style="width:0%"></div></div>
-      </div>
-    </div>
-
-```
-<div class="habit-block">
-  <div class="habit-header">
-    <div class="habit-name" id="drink-name">禁酒</div>
-    <div class="streak-info">
-      <div class="streak-num" id="streak-drink">0</div>
-      <div class="streak-label">日連続</div>
-    </div>
-  </div>
-  <div class="big-buttons">
-    <button class="big-btn" id="dbtn-ok" onclick="setToday('drink','ok')">✓ 達成</button>
-    <button class="big-btn" id="dbtn-ng" onclick="setToday('drink','ng')">✗ 未達成</button>
-  </div>
-  <div class="rate-bar-wrap">
-    <div class="rate-label"><span>今月の達成率</span><span id="rate-drink">0%</span></div>
-    <div class="rate-bar"><div class="rate-fill" id="rbar-drink" style="width:0%"></div></div>
-  </div>
-</div>
-```
-
-  </div>
+  <div id="page-today-inner" style="padding:20px 18px"></div>
 </div>
 
 <!-- TOILET CAL -->
-
 <div class="page" id="page-toilet">
   <div class="cal-page">
     <div class="summary-row" id="sum-toilet"></div>
@@ -244,16 +482,15 @@ font-family: ‘Noto Serif JP’, serif; cursor: pointer; margin-top: 8px; displ
     </div>
     <div class="cal-grid" id="cal-toilet"></div>
     <div class="cal-legend">
-      <div class="legend-item"><div class="legend-dot" style="background:var(--green-bright)"></div>達成</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--red-bright)"></div>未達成</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--green-ink)"></div>達成</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--red-ink)"></div>未達成</div>
       <div class="legend-item"><div class="legend-dot" style="background:var(--card);border:1px solid var(--border)"></div>未記録</div>
     </div>
-    <p style="text-align:center;font-size:11px;color:var(--text-dim);margin-top:14px;">日付をタップして編集できます</p>
+    <div class="cal-hint">― 日付をタップして編集 ―</div>
   </div>
 </div>
 
 <!-- DRINK CAL -->
-
 <div class="page" id="page-drink">
   <div class="cal-page">
     <div class="summary-row" id="sum-drink"></div>
@@ -264,16 +501,34 @@ font-family: ‘Noto Serif JP’, serif; cursor: pointer; margin-top: 8px; displ
     </div>
     <div class="cal-grid" id="cal-drink"></div>
     <div class="cal-legend">
-      <div class="legend-item"><div class="legend-dot" style="background:var(--green-bright)"></div>達成</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--red-bright)"></div>未達成</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--green-ink)"></div>達成</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--red-ink)"></div>未達成</div>
       <div class="legend-item"><div class="legend-dot" style="background:var(--card);border:1px solid var(--border)"></div>未記録</div>
     </div>
-    <p style="text-align:center;font-size:11px;color:var(--text-dim);margin-top:14px;">日付をタップして編集できます</p>
+    <div class="cal-hint">― 日付をタップして編集 ―</div>
+  </div>
+</div>
+
+<!-- TRADE CAL -->
+<div class="page" id="page-trade">
+  <div class="cal-page">
+    <div class="summary-row" id="sum-trade"></div>
+    <div class="cal-header">
+      <button class="cal-nav-btn" onclick="changeMonth('trade',-1)">‹</button>
+      <div class="cal-month" id="clabel-trade"></div>
+      <button class="cal-nav-btn" onclick="changeMonth('trade',1)">›</button>
+    </div>
+    <div class="cal-grid" id="cal-trade"></div>
+    <div class="cal-legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--green-ink)"></div>達成</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--red-ink)"></div>未達成</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--card);border:1px solid var(--border)"></div>未記録</div>
+    </div>
+    <div class="cal-hint">― 日付をタップして編集 ―</div>
   </div>
 </div>
 
 <!-- MODAL -->
-
 <div class="modal-overlay" id="modal" onclick="closeModalOverlay(event)">
   <div class="modal">
     <div class="modal-title" id="modal-title"></div>
@@ -281,15 +536,17 @@ font-family: ‘Noto Serif JP’, serif; cursor: pointer; margin-top: 8px; displ
       <button class="modal-btn" id="modal-ok-btn" onclick="modalSet('ok')">✓ 達成</button>
       <button class="modal-btn" id="modal-ng-btn" onclick="modalSet('ng')">✗ 未達成</button>
     </div>
-    <button class="modal-cancel" onclick="modalClear()">この日の記録を消す</button>
-    <button class="modal-cancel" onclick="closeModal()">キャンセル</button>
+    <button class="modal-sub" onclick="modalClear()">この日の記録を消す</button>
+    <button class="modal-sub" onclick="closeModal()">キャンセル</button>
   </div>
 </div>
 
 <script>
-const KEY = "ritsu_v2";
+const KEY = "ritsu_v3";
 let data = JSON.parse(localStorage.getItem(KEY) || "{}");
-let calMonths = { toilet: new Date(), drink: new Date() };
+const HABITS = ['toilet','drink','trade'];
+const HABIT_NAMES = { toilet:'トイレ掃除', drink:'禁酒', trade:'相場ノルマ' };
+let calMonths = { toilet: new Date(), drink: new Date(), trade: new Date() };
 let modalState = { habit: null, dateKey: null };
 
 function todayStr() {
@@ -345,38 +602,56 @@ function getMonthRate(habit) {
   return total===0 ? 0 : Math.round(ok/total*100);
 }
 
-function getTotalOk(habit) {
-  return Object.values(data).filter(v=>v[habit]==='ok').length;
-}
-
-function fireLabel(streak, name) {
-  if(streak>=30) return name+' 🔥🔥🔥';
-  if(streak>=7)  return name+' 🔥🔥';
-  if(streak>=3)  return name+' 🔥';
-  return name;
+function fireLabel(streak) {
+  if(streak>=30) return ' 🔥🔥🔥';
+  if(streak>=7)  return ' 🔥🔥';
+  if(streak>=3)  return ' 🔥';
+  return '';
 }
 
 function renderToday() {
   const k = todayStr();
   const d = data[k]||{};
   const now = new Date();
-  document.getElementById('todayLabel').textContent =
-    now.getFullYear()+'年'+(now.getMonth()+1)+'月'+now.getDate()+'日';
+  document.getElementById('todayLabel').innerHTML =
+    now.getFullYear()+'年<br>'+(now.getMonth()+1)+'月'+now.getDate()+'日';
 
-  ['toilet','drink'].forEach(habit => {
+  const configs = [
+    {habit:'toilet', prefix:'t', name:'トイレ掃除'},
+    {habit:'drink',  prefix:'d', name:'禁酒'},
+    {habit:'trade',  prefix:'tr', name:'相場ノルマ'},
+  ];
+
+  let html = '';
+  configs.forEach(({habit, prefix, name}) => {
     const val = d[habit];
     const streak = getStreak(habit);
     const rate = getMonthRate(habit);
-    const prefix = habit==='toilet'?'t':'d';
-    const name = habit==='toilet'?'トイレ掃除':'禁酒';
+    const fire = fireLabel(streak);
+    const okClass = val==='ok' ? ' ok' : '';
+    const ngClass = val==='ng' ? ' ng' : '';
 
-    document.getElementById('streak-'+habit).textContent = streak;
-    document.getElementById(habit+'-name').textContent = fireLabel(streak, name);
-    document.getElementById(prefix+'btn-ok').className = 'big-btn'+(val==='ok'?' ok':'');
-    document.getElementById(prefix+'btn-ng').className = 'big-btn'+(val==='ng'?' ng':'');
-    document.getElementById('rate-'+habit).textContent = rate+'%';
-    document.getElementById('rbar-'+habit).style.width = rate+'%';
+    html += `
+    <div class="habit-block">
+      <div class="habit-header">
+        <div class="habit-name">${name}<span class="fire">${fire}</span></div>
+        <div class="streak-info">
+          <div class="streak-num">${streak}</div>
+          <div class="streak-label">日連続</div>
+        </div>
+      </div>
+      <div class="big-buttons">
+        <button class="big-btn${okClass}" onclick="setToday('${habit}','ok')">✓ 達成</button>
+        <button class="big-btn${ngClass}" onclick="setToday('${habit}','ng')">✗ 未達成</button>
+      </div>
+      <div class="rate-bar-wrap">
+        <div class="rate-label"><span>今月の達成率</span><span>${rate}%</span></div>
+        <div class="rate-bar"><div class="rate-fill" style="width:${rate}%"></div></div>
+      </div>
+    </div>`;
   });
+
+  document.getElementById('page-today-inner').innerHTML = html;
 }
 
 function renderSummary(habit) {
@@ -384,7 +659,7 @@ function renderSummary(habit) {
   document.getElementById('sum-'+habit).innerHTML = `
     <div class="summary-card"><div class="s-val">${streak}</div><div class="s-lbl">現在の連続</div></div>
     <div class="summary-card"><div class="s-val">${best}</div><div class="s-lbl">最長連続</div></div>
-    <div class="summary-card"><div class="s-val">${rate}%</div><div class="s-lbl">今月の達成率</div></div>
+    <div class="summary-card"><div class="s-val">${rate}%</div><div class="s-lbl">今月達成率</div></div>
   `;
 }
 
@@ -425,7 +700,7 @@ function openModal(habit, dateKey) {
   modalState={habit,dateKey};
   const p=dateKey.split('-');
   document.getElementById('modal-title').textContent =
-    p[0]+'年'+parseInt(p[1])+'月'+parseInt(p[2])+'日　'+(habit==='toilet'?'トイレ掃除':'禁酒');
+    p[0]+'年'+parseInt(p[1])+'月'+parseInt(p[2])+'日　'+HABIT_NAMES[habit];
   const val=data[dateKey]&&data[dateKey][habit];
   document.getElementById('modal-ok-btn').className='modal-btn'+(val==='ok'?' ok':'');
   document.getElementById('modal-ng-btn').className='modal-btn'+(val==='ng'?' ng':'');
@@ -450,18 +725,19 @@ function modalClear() {
 
 function renderAll() {
   renderToday();
-  ['toilet','drink'].forEach(h=>{renderSummary(h);renderCalendar(h);});
+  HABITS.forEach(h=>{renderSummary(h);renderCalendar(h);});
 }
 
 function switchTab(name) {
-  const names=['today','toilet','drink'];
-  document.querySelectorAll('.tab').forEach((t,i)=>{ t.className='tab'+(names[i]===name?' active':''); });
+  const names=['today','toilet','drink','trade'];
+  document.querySelectorAll('.tab').forEach((t,i)=>{
+    t.className='tab'+(names[i]===name?' active':'');
+  });
   document.querySelectorAll('.page').forEach(p=>p.className='page');
   document.getElementById('page-'+name).className='page active';
 }
 
 renderAll();
 </script>
-
 </body>
 </html>
