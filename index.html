@@ -43,256 +43,131 @@ body {
     radial-gradient(ellipse at 80% 20%, rgba(120,100,60,0.04) 0%, transparent 50%);
 }
 
-.ink-line {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--border2) 20%, var(--border2) 80%, transparent);
-  opacity: 0.6;
-}
+.ink-line { height: 1px; background: linear-gradient(90deg, transparent, var(--border2) 20%, var(--border2) 80%, transparent); opacity: 0.6; }
 
-.header {
-  padding: 52px 24px 18px;
-  position: relative;
-  overflow: hidden;
-}
-.header::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(180deg, rgba(200,160,80,0.04) 0%, transparent 100%);
-  pointer-events: none;
-}
+.header { padding: 52px 24px 18px; position: relative; overflow: hidden; }
+.header::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(200,160,80,0.04) 0%, transparent 100%); pointer-events: none; }
 .header-inner { display: flex; justify-content: space-between; align-items: flex-end; }
-.header h1 {
-  font-size: 48px; font-weight: 900; color: var(--sumi);
-  letter-spacing: 0.15em; line-height: 1;
-  text-shadow: 0 2px 20px rgba(200,160,80,0.15);
-}
+.header h1 { font-size: 48px; font-weight: 900; color: var(--sumi); letter-spacing: 0.15em; line-height: 1; text-shadow: 0 2px 20px rgba(200,160,80,0.15); }
 .header .subtitle { font-size: 10px; color: var(--ink-dim); letter-spacing: 0.3em; margin-top: 4px; font-weight: 300; }
 .header .date { font-size: 12px; color: var(--ink-dim); letter-spacing: 0.1em; font-weight: 300; text-align: right; line-height: 1.6; }
 
-.tabs {
-  display: flex; background: var(--bg);
-  position: sticky; top: 0; z-index: 20;
-}
-.tab {
-  flex: 1; padding: 13px 0; text-align: center;
-  font-size: 11px; color: var(--ink-dim); letter-spacing: 0.15em;
-  border-bottom: 1px solid var(--border); cursor: pointer;
-  font-family: 'Noto Serif JP', serif; font-weight: 300; transition: all 0.3s;
-  position: relative;
-}
+.tabs { display: flex; background: var(--bg); position: sticky; top: 0; z-index: 20; }
+.tab { flex: 1; padding: 13px 0; text-align: center; font-size: 11px; color: var(--ink-dim); letter-spacing: 0.15em; border-bottom: 1px solid var(--border); cursor: pointer; font-family: 'Noto Serif JP', serif; font-weight: 300; transition: all 0.3s; position: relative; }
 .tab.active { color: var(--sumi); font-weight: 700; }
-.tab.active::after {
-  content: ''; position: absolute; bottom: -1px; left: 15%; right: 15%;
-  height: 1px; background: var(--sumi);
-}
+.tab.active::after { content: ''; position: absolute; bottom: -1px; left: 15%; right: 15%; height: 1px; background: var(--sumi); }
 
 .page { display: none; }
 .page.active { display: block; }
 
-/* ===== TODAY ===== */
-.habit-block {
-  background: var(--card); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 22px 20px; margin-bottom: 14px;
-  position: relative; overflow: hidden;
-}
-.habit-block::before {
-  content: ''; position: absolute; top: 0; left: 0;
-  width: 2px; height: 100%;
-  background: linear-gradient(180deg, transparent, var(--sumi-dim), transparent);
-  opacity: 0.5;
-}
+/* TODAY */
+.habit-block { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 20px; margin-bottom: 14px; position: relative; overflow: hidden; }
+.habit-block::before { content: ''; position: absolute; top: 0; left: 0; width: 2px; height: 100%; background: linear-gradient(180deg, transparent, var(--sumi-dim), transparent); opacity: 0.5; }
 .habit-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 18px; }
 .habit-name { font-size: 18px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink); line-height: 1.2; }
 .streak-info { text-align: right; }
 .streak-num { font-size: 30px; font-weight: 900; color: var(--sumi); line-height: 1; text-shadow: 0 0 20px rgba(200,160,80,0.2); }
 .streak-label { font-size: 10px; color: var(--ink-dim); letter-spacing: 0.1em; font-weight: 300; }
-
 .big-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.big-btn {
-  padding: 20px 8px; border-radius: 10px; border: 1px solid var(--border2);
-  background: var(--bg2); color: var(--ink-dim); font-size: 15px;
-  font-family: 'Noto Serif JP', serif; letter-spacing: 0.15em;
-  cursor: pointer; transition: all 0.2s; text-align: center; font-weight: 300;
-}
+.big-btn { padding: 20px 8px; border-radius: 10px; border: 1px solid var(--border2); background: var(--bg2); color: var(--ink-dim); font-size: 15px; font-family: 'Noto Serif JP', serif; letter-spacing: 0.15em; cursor: pointer; transition: all 0.2s; text-align: center; font-weight: 300; }
 .big-btn.ok { background: var(--green-bg); border-color: var(--green-ink); color: #8ac8a0; font-weight: 700; box-shadow: inset 0 0 20px rgba(42,90,58,0.3); }
 .big-btn.ng { background: var(--red-bg); border-color: var(--red-ink); color: #c08878; font-weight: 700; box-shadow: inset 0 0 20px rgba(139,58,42,0.3); }
 .big-btn:active { transform: scale(0.97); }
-
 .rate-bar-wrap { margin-top: 16px; }
 .rate-label { display: flex; justify-content: space-between; font-size: 10px; color: var(--ink-dim); margin-bottom: 6px; letter-spacing: 0.1em; font-weight: 300; }
 .rate-bar { height: 2px; background: var(--ink-faint); border-radius: 1px; overflow: hidden; }
 .rate-fill { height: 100%; background: linear-gradient(90deg, var(--sumi-dim), var(--sumi)); border-radius: 1px; transition: width 0.6s ease; }
 
-/* ===== CALENDAR ===== */
+/* CALENDAR (habit) */
 .cal-page { padding: 20px 18px; }
 .summary-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 24px; }
 .summary-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 10px; text-align: center; }
 .summary-card .s-val { font-size: 28px; font-weight: 900; color: var(--sumi); line-height: 1; }
 .summary-card .s-lbl { font-size: 9px; color: var(--ink-dim); margin-top: 5px; letter-spacing: 0.1em; font-weight: 300; }
-
 .cal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
 .cal-month { font-size: 14px; font-weight: 700; color: var(--ink); letter-spacing: 0.1em; }
 .cal-nav-btn { background: transparent; border: 1px solid var(--border2); color: var(--ink-dim); width: 30px; height: 30px; border-radius: 6px; font-size: 16px; cursor: pointer; }
-
 .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
 .cal-dow { text-align: center; font-size: 9px; color: var(--ink-dim); padding: 4px 0 8px; letter-spacing: 0.05em; font-weight: 300; }
-.cal-day {
-  aspect-ratio: 1; border-radius: 8px; display: flex; align-items: center; justify-content: center;
-  font-size: 12px; color: var(--ink-dim); background: var(--card); cursor: pointer;
-  transition: all 0.15s; border: 1px solid transparent; font-weight: 300;
-}
+.cal-day { aspect-ratio: 1; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--ink-dim); background: var(--card); cursor: pointer; transition: all 0.15s; border: 1px solid transparent; font-weight: 300; }
 .cal-day.empty { background: transparent; cursor: default; border: none; }
 .cal-day.ok { background: var(--green-bg); color: #7ab890; border-color: var(--green-ink); font-weight: 700; }
 .cal-day.ng { background: var(--red-bg); color: #b07868; border-color: var(--red-ink); }
 .cal-day.today-mark { border-color: var(--sumi) !important; color: var(--sumi); }
 .cal-day:not(.empty):active { transform: scale(0.88); }
-
 .cal-legend { display: flex; gap: 16px; margin-top: 14px; justify-content: center; }
 .legend-item { display: flex; align-items: center; gap: 6px; font-size: 10px; color: var(--ink-dim); font-weight: 300; }
 .legend-dot { width: 8px; height: 8px; border-radius: 2px; }
 .cal-hint { text-align: center; font-size: 10px; color: var(--ink-faint); margin-top: 16px; letter-spacing: 0.15em; font-weight: 300; }
 
-/* ===== DIARY ===== */
+/* DIARY PAGE */
 .diary-page { padding: 20px 18px; }
 
-.diary-today-block {
-  background: var(--card); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 20px; margin-bottom: 24px;
-  position: relative; overflow: hidden;
-}
-.diary-today-block::before {
-  content: ''; position: absolute; top: 0; left: 0;
-  width: 2px; height: 100%;
-  background: linear-gradient(180deg, transparent, var(--sumi-dim), transparent);
-  opacity: 0.5;
-}
-.diary-date-label {
-  font-size: 11px; color: var(--sumi); letter-spacing: 0.2em;
-  font-weight: 300; margin-bottom: 12px;
-}
-.diary-textarea {
-  width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--border2);
-  color: var(--ink); font-family: 'Noto Serif JP', serif; font-size: 15px;
-  line-height: 1.8; padding: 8px 0; resize: none; outline: none;
-  letter-spacing: 0.05em; font-weight: 300;
-  min-height: 80px;
-}
+.diary-input-block { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 24px; position: relative; overflow: hidden; }
+.diary-input-block::before { content: ''; position: absolute; top: 0; left: 0; width: 2px; height: 100%; background: linear-gradient(180deg, transparent, var(--sumi-dim), transparent); opacity: 0.5; }
+.diary-date-label { font-size: 11px; color: var(--sumi); letter-spacing: 0.2em; font-weight: 300; margin-bottom: 12px; }
+.diary-textarea { width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--border2); color: var(--ink); font-family: 'Noto Serif JP', serif; font-size: 15px; line-height: 1.8; padding: 8px 0; resize: none; outline: none; letter-spacing: 0.05em; font-weight: 300; min-height: 80px; }
 .diary-textarea::placeholder { color: var(--ink-faint); }
-.diary-save-btn {
-  margin-top: 14px; width: 100%; padding: 13px;
-  background: transparent; border: 1px solid var(--sumi-dim);
-  border-radius: 8px; color: var(--sumi); font-size: 13px;
-  font-family: 'Noto Serif JP', serif; letter-spacing: 0.2em;
-  cursor: pointer; transition: all 0.2s; font-weight: 300;
-}
-.diary-save-btn:active { background: var(--card); }
-.diary-saved-msg {
-  text-align: center; font-size: 11px; color: var(--green-bright);
-  margin-top: 8px; letter-spacing: 0.1em; font-weight: 300;
-  opacity: 0; transition: opacity 0.3s;
-}
+.diary-save-btn { margin-top: 14px; width: 100%; padding: 13px; background: transparent; border: 1px solid var(--sumi-dim); border-radius: 8px; color: var(--sumi); font-size: 13px; font-family: 'Noto Serif JP', serif; letter-spacing: 0.2em; cursor: pointer; transition: all 0.2s; font-weight: 300; }
+.diary-saved-msg { text-align: center; font-size: 11px; color: var(--green-bright); margin-top: 8px; letter-spacing: 0.1em; font-weight: 300; opacity: 0; transition: opacity 0.3s; height: 16px; }
 .diary-saved-msg.show { opacity: 1; }
 
-/* 過去の日記一覧 */
-.diary-list-header {
-  font-size: 10px; color: var(--ink-dim); letter-spacing: 0.2em;
-  font-weight: 300; margin-bottom: 14px;
-  display: flex; justify-content: space-between; align-items: center;
-}
-.diary-entry {
-  background: var(--card); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 16px 18px; margin-bottom: 10px;
-  cursor: pointer; transition: border-color 0.2s;
-  position: relative; overflow: hidden;
-}
-.diary-entry::before {
-  content: ''; position: absolute; top: 0; left: 0;
-  width: 2px; height: 100%;
-  background: linear-gradient(180deg, transparent, var(--ink-faint), transparent);
-}
-.diary-entry:active { border-color: var(--sumi-dim); }
-.diary-entry-date {
-  font-size: 10px; color: var(--sumi-dim); letter-spacing: 0.15em;
-  font-weight: 300; margin-bottom: 6px;
-}
-.diary-entry-text {
-  font-size: 14px; color: var(--ink); line-height: 1.7;
-  letter-spacing: 0.05em; font-weight: 300;
-  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
-}
-.diary-empty {
-  text-align: center; color: var(--ink-faint); font-size: 12px;
-  padding: 40px 0; letter-spacing: 0.2em; font-weight: 300;
-}
+/* DIARY CALENDAR */
+.diary-cal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.diary-cal-title { font-size: 11px; color: var(--ink-dim); letter-spacing: 0.2em; font-weight: 300; }
+.diary-cal-month { font-size: 14px; font-weight: 700; color: var(--ink); letter-spacing: 0.1em; }
 
-/* 日記詳細モーダル */
-.diary-modal-overlay {
-  display: none; position: fixed; inset: 0;
-  background: rgba(0,0,0,0.8); z-index: 200; align-items: flex-end;
-  backdrop-filter: blur(2px);
+/* diary calendar day — two-line cell */
+.dcal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.dcal-dow { text-align: center; font-size: 9px; color: var(--ink-dim); padding: 4px 0 8px; letter-spacing: 0.05em; font-weight: 300; }
+.dcal-day {
+  border-radius: 8px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 6px 2px;
+  font-size: 12px; color: var(--ink-dim); background: var(--card);
+  cursor: pointer; transition: all 0.15s; border: 1px solid transparent; font-weight: 300;
+  min-height: 46px;
 }
-.diary-modal-overlay.show { display: flex; }
-.diary-modal {
-  background: #1a1714; border-radius: 18px 18px 0 0;
-  padding: 28px 20px 48px; width: 100%;
-  border-top: 1px solid var(--border2); max-height: 80vh; overflow-y: auto;
-}
-.diary-modal-date {
-  font-size: 12px; color: var(--sumi); letter-spacing: 0.2em;
-  font-weight: 300; margin-bottom: 16px; text-align: center;
-}
-.diary-modal-text {
-  font-size: 16px; color: var(--ink); line-height: 2;
-  letter-spacing: 0.05em; font-weight: 300; white-space: pre-wrap;
-  margin-bottom: 24px;
-}
-.diary-modal-edit {
-  width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--border2);
-  color: var(--ink); font-family: 'Noto Serif JP', serif; font-size: 15px;
-  line-height: 1.8; padding: 8px 0; resize: none; outline: none;
-  display: none; min-height: 80px; margin-bottom: 12px;
-}
-.diary-modal-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
-.diary-modal-btn {
-  padding: 13px; border-radius: 8px; border: 1px solid var(--border2);
-  background: transparent; color: var(--ink-dim); font-size: 13px;
-  font-family: 'Noto Serif JP', serif; cursor: pointer; letter-spacing: 0.1em; font-weight: 300;
-}
-.diary-modal-btn.primary { border-color: var(--sumi-dim); color: var(--sumi); }
-.diary-modal-btn.danger { border-color: var(--red-ink); color: #c08878; }
-.diary-modal-close {
-  width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border);
-  background: transparent; color: var(--ink-dim); font-size: 12px;
-  font-family: 'Noto Serif JP', serif; cursor: pointer; letter-spacing: 0.1em; font-weight: 300;
-}
+.dcal-day.empty { background: transparent; cursor: default; border: none; }
+.dcal-day.has-diary { border-color: var(--sumi-dim); }
+.dcal-day.today-mark { border-color: var(--sumi) !important; color: var(--sumi); }
+.dcal-day:not(.empty):active { transform: scale(0.88); }
+.dcal-day .day-num { font-size: 12px; line-height: 1; }
+.dcal-day .day-mark { font-size: 10px; margin-top: 3px; line-height: 1; }
 
-/* HABIT MODAL */
-.modal-overlay {
-  display: none; position: fixed; inset: 0;
-  background: rgba(0,0,0,0.75); z-index: 100; align-items: flex-end; backdrop-filter: blur(2px);
-}
+.diary-legend { display: flex; justify-content: center; margin-top: 14px; }
+.diary-legend-item { display: flex; align-items: center; gap: 6px; font-size: 10px; color: var(--ink-dim); font-weight: 300; }
+
+/* MODALS */
+.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 100; align-items: flex-end; backdrop-filter: blur(2px); }
 .modal-overlay.show { display: flex; }
-.modal {
-  background: #1a1714; border-radius: 18px 18px 0 0;
-  padding: 28px 20px 48px; width: 100%; border-top: 1px solid var(--border2);
-}
+.modal { background: #1a1714; border-radius: 18px 18px 0 0; padding: 28px 20px 48px; width: 100%; border-top: 1px solid var(--border2); }
 .modal-title { font-size: 14px; font-weight: 700; color: var(--sumi); margin-bottom: 22px; text-align: center; letter-spacing: 0.1em; }
 .modal-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 10px; }
 .modal-btn { padding: 18px; border-radius: 10px; border: 1px solid var(--border2); background: var(--bg2); color: var(--ink-dim); font-size: 15px; font-family: 'Noto Serif JP', serif; cursor: pointer; transition: all 0.15s; letter-spacing: 0.1em; font-weight: 300; }
 .modal-btn.ok { background: var(--green-bg); border-color: var(--green-ink); color: #8ac8a0; font-weight: 700; }
 .modal-btn.ng { background: var(--red-bg); border-color: var(--red-ink); color: #c08878; font-weight: 700; }
 .modal-sub { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border); background: transparent; color: var(--ink-dim); font-size: 12px; font-family: 'Noto Serif JP', serif; cursor: pointer; margin-top: 8px; display: block; letter-spacing: 0.1em; font-weight: 300; }
+
+/* DIARY VIEW MODAL */
+.dmodal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 200; align-items: flex-end; backdrop-filter: blur(2px); }
+.dmodal-overlay.show { display: flex; }
+.dmodal { background: #1a1714; border-radius: 18px 18px 0 0; padding: 28px 20px 48px; width: 100%; border-top: 1px solid var(--border2); max-height: 75vh; overflow-y: auto; }
+.dmodal-date { font-size: 11px; color: var(--sumi); letter-spacing: 0.2em; font-weight: 300; margin-bottom: 16px; text-align: center; }
+.dmodal-text { font-size: 15px; color: var(--ink); line-height: 2; letter-spacing: 0.05em; font-weight: 300; white-space: pre-wrap; margin-bottom: 20px; min-height: 40px; }
+.dmodal-edit { width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--border2); color: var(--ink); font-family: 'Noto Serif JP', serif; font-size: 15px; line-height: 1.8; padding: 8px 0; resize: none; outline: none; display: none; min-height: 80px; margin-bottom: 16px; }
+.dmodal-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+.dmodal-btn { padding: 13px; border-radius: 8px; border: 1px solid var(--border2); background: transparent; color: var(--ink-dim); font-size: 13px; font-family: 'Noto Serif JP', serif; cursor: pointer; letter-spacing: 0.1em; font-weight: 300; }
+.dmodal-btn.primary { border-color: var(--sumi-dim); color: var(--sumi); }
+.dmodal-btn.danger { border-color: var(--red-ink); color: #c08878; }
+.dmodal-close { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border); background: transparent; color: var(--ink-dim); font-size: 12px; font-family: 'Noto Serif JP', serif; cursor: pointer; letter-spacing: 0.1em; font-weight: 300; }
 </style>
 </head>
 <body>
 
 <div class="header">
   <div class="header-inner">
-    <div>
-      <h1>律</h1>
-      <div class="subtitle">SELF DISCIPLINE</div>
-    </div>
+    <div><h1>律</h1><div class="subtitle">SELF DISCIPLINE</div></div>
     <div class="date" id="todayLabel"></div>
   </div>
 </div>
@@ -311,86 +186,85 @@ body {
   <div id="page-today-inner" style="padding:20px 18px"></div>
 </div>
 
-<!-- TOILET CAL -->
-<div class="page" id="page-toilet">
-  <div class="cal-page">
-    <div class="summary-row" id="sum-toilet"></div>
-    <div class="cal-header">
-      <button class="cal-nav-btn" onclick="changeMonth('toilet',-1)">‹</button>
-      <div class="cal-month" id="clabel-toilet"></div>
-      <button class="cal-nav-btn" onclick="changeMonth('toilet',1)">›</button>
-    </div>
-    <div class="cal-grid" id="cal-toilet"></div>
-    <div class="cal-legend">
-      <div class="legend-item"><div class="legend-dot" style="background:var(--green-ink)"></div>達成</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--red-ink)"></div>未達成</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--card);border:1px solid var(--border)"></div>未記録</div>
-    </div>
-    <div class="cal-hint">― 日付をタップして編集 ―</div>
+<!-- TOILET -->
+<div class="page" id="page-toilet"><div class="cal-page">
+  <div class="summary-row" id="sum-toilet"></div>
+  <div class="cal-header">
+    <button class="cal-nav-btn" onclick="changeMonth('toilet',-1)">‹</button>
+    <div class="cal-month" id="clabel-toilet"></div>
+    <button class="cal-nav-btn" onclick="changeMonth('toilet',1)">›</button>
   </div>
-</div>
+  <div class="cal-grid" id="cal-toilet"></div>
+  <div class="cal-legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--green-ink)"></div>達成</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--red-ink)"></div>未達成</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--card);border:1px solid var(--border)"></div>未記録</div>
+  </div>
+  <div class="cal-hint">― 日付をタップして編集 ―</div>
+</div></div>
 
-<!-- DRINK CAL -->
-<div class="page" id="page-drink">
-  <div class="cal-page">
-    <div class="summary-row" id="sum-drink"></div>
-    <div class="cal-header">
-      <button class="cal-nav-btn" onclick="changeMonth('drink',-1)">‹</button>
-      <div class="cal-month" id="clabel-drink"></div>
-      <button class="cal-nav-btn" onclick="changeMonth('drink',1)">›</button>
-    </div>
-    <div class="cal-grid" id="cal-drink"></div>
-    <div class="cal-legend">
-      <div class="legend-item"><div class="legend-dot" style="background:var(--green-ink)"></div>達成</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--red-ink)"></div>未達成</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--card);border:1px solid var(--border)"></div>未記録</div>
-    </div>
-    <div class="cal-hint">― 日付をタップして編集 ―</div>
+<!-- DRINK -->
+<div class="page" id="page-drink"><div class="cal-page">
+  <div class="summary-row" id="sum-drink"></div>
+  <div class="cal-header">
+    <button class="cal-nav-btn" onclick="changeMonth('drink',-1)">‹</button>
+    <div class="cal-month" id="clabel-drink"></div>
+    <button class="cal-nav-btn" onclick="changeMonth('drink',1)">›</button>
   </div>
-</div>
+  <div class="cal-grid" id="cal-drink"></div>
+  <div class="cal-legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--green-ink)"></div>達成</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--red-ink)"></div>未達成</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--card);border:1px solid var(--border)"></div>未記録</div>
+  </div>
+  <div class="cal-hint">― 日付をタップして編集 ―</div>
+</div></div>
 
-<!-- TRADE CAL -->
-<div class="page" id="page-trade">
-  <div class="cal-page">
-    <div class="summary-row" id="sum-trade"></div>
-    <div class="cal-header">
-      <button class="cal-nav-btn" onclick="changeMonth('trade',-1)">‹</button>
-      <div class="cal-month" id="clabel-trade"></div>
-      <button class="cal-nav-btn" onclick="changeMonth('trade',1)">›</button>
-    </div>
-    <div class="cal-grid" id="cal-trade"></div>
-    <div class="cal-legend">
-      <div class="legend-item"><div class="legend-dot" style="background:var(--green-ink)"></div>達成</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--red-ink)"></div>未達成</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--card);border:1px solid var(--border)"></div>未記録</div>
-    </div>
-    <div class="cal-hint">― 日付をタップして編集 ―</div>
+<!-- TRADE -->
+<div class="page" id="page-trade"><div class="cal-page">
+  <div class="summary-row" id="sum-trade"></div>
+  <div class="cal-header">
+    <button class="cal-nav-btn" onclick="changeMonth('trade',-1)">‹</button>
+    <div class="cal-month" id="clabel-trade"></div>
+    <button class="cal-nav-btn" onclick="changeMonth('trade',1)">›</button>
   </div>
-</div>
+  <div class="cal-grid" id="cal-trade"></div>
+  <div class="cal-legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--green-ink)"></div>達成</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--red-ink)"></div>未達成</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--card);border:1px solid var(--border)"></div>未記録</div>
+  </div>
+  <div class="cal-hint">― 日付をタップして編集 ―</div>
+</div></div>
 
 <!-- DIARY -->
 <div class="page" id="page-diary">
   <div class="diary-page">
-
-    <!-- 今日の日記入力 -->
-    <div class="diary-today-block">
+    <!-- 今日の入力 -->
+    <div class="diary-input-block">
       <div class="diary-date-label" id="diary-today-label"></div>
       <textarea class="diary-textarea" id="diary-input" placeholder="今日の一言…" rows="3"></textarea>
       <button class="diary-save-btn" onclick="saveDiary()">― 記　録 ―</button>
       <div class="diary-saved-msg" id="diary-saved-msg">保存しました</div>
     </div>
 
-    <!-- 過去の日記 -->
-    <div class="diary-list-header">
-      <span>過去の記録</span>
-      <span id="diary-count" style="color:var(--ink-faint)"></span>
+    <!-- 日記カレンダー -->
+    <div class="diary-cal-header">
+      <button class="cal-nav-btn" onclick="changeDiaryMonth(-1)">‹</button>
+      <div class="diary-cal-month" id="dcal-label"></div>
+      <button class="cal-nav-btn" onclick="changeDiaryMonth(1)">›</button>
     </div>
-    <div id="diary-list"></div>
-
+    <div class="dcal-grid" id="dcal"></div>
+    <div class="diary-legend">
+      <div class="diary-legend-item">
+        <span style="font-size:13px">✦</span>
+        <span>日記あり（タップで表示）</span>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- HABIT EDIT MODAL -->
+<!-- HABIT MODAL -->
 <div class="modal-overlay" id="modal" onclick="closeModalOverlay(event)">
   <div class="modal">
     <div class="modal-title" id="modal-title"></div>
@@ -403,17 +277,17 @@ body {
   </div>
 </div>
 
-<!-- DIARY DETAIL MODAL -->
-<div class="diary-modal-overlay" id="diary-modal" onclick="closeDiaryModalOverlay(event)">
-  <div class="diary-modal">
-    <div class="diary-modal-date" id="dm-date"></div>
-    <div class="diary-modal-text" id="dm-text"></div>
-    <textarea class="diary-modal-edit" id="dm-edit"></textarea>
-    <div class="diary-modal-btns">
-      <button class="diary-modal-btn primary" id="dm-edit-btn" onclick="toggleDiaryEdit()">編　集</button>
-      <button class="diary-modal-btn danger" onclick="deleteDiaryEntry()">削　除</button>
+<!-- DIARY MODAL -->
+<div class="dmodal-overlay" id="dmodal" onclick="closeDModalOverlay(event)">
+  <div class="dmodal">
+    <div class="dmodal-date" id="dm-date"></div>
+    <div class="dmodal-text" id="dm-text"></div>
+    <textarea class="dmodal-edit" id="dm-edit"></textarea>
+    <div class="dmodal-btns">
+      <button class="dmodal-btn primary" id="dm-edit-btn" onclick="toggleEdit()">編　集</button>
+      <button class="dmodal-btn danger" onclick="deleteDiary()">削　除</button>
     </div>
-    <button class="diary-modal-close" onclick="closeDiaryModal()">閉じる</button>
+    <button class="dmodal-close" onclick="closeDModal()">閉じる</button>
   </div>
 </div>
 
@@ -423,9 +297,9 @@ let data = JSON.parse(localStorage.getItem(KEY) || "{}");
 const HABITS = ['toilet','drink','trade'];
 const HABIT_NAMES = { toilet:'トイレ掃除', drink:'禁酒', trade:'相場ノルマ' };
 let calMonths = { toilet: new Date(), drink: new Date(), trade: new Date() };
-let modalState = { habit: null, dateKey: null };
-let diaryModalKey = null;
-let diaryEditMode = false;
+let habitModalState = { habit: null, dateKey: null };
+let diaryCalMonth = new Date();
+let dmodalKey = null, editMode = false;
 
 function todayStr() {
   const d = new Date();
@@ -433,7 +307,9 @@ function todayStr() {
 }
 function pad(n) { return String(n).padStart(2,'0'); }
 function save() { localStorage.setItem(KEY, JSON.stringify(data)); }
+function escHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
+/* ---- HABITS ---- */
 function setToday(habit, val) {
   const k = todayStr();
   if(!data[k]) data[k]={};
@@ -441,85 +317,50 @@ function setToday(habit, val) {
   else data[k][habit]=val;
   save(); renderAll();
 }
-
 function getStreak(habit) {
   const todayDate = new Date(); todayDate.setHours(0,0,0,0);
   let d = new Date(todayDate), streak = 0;
   const tk = todayStr();
-  if(!data[tk] || data[tk][habit]===undefined) d.setDate(d.getDate()-1);
+  if(!data[tk]||data[tk][habit]===undefined) d.setDate(d.getDate()-1);
   while(true) {
-    const k = d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
-    if(data[k] && data[k][habit]==='ok') { streak++; d.setDate(d.getDate()-1); }
+    const k=d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+    if(data[k]&&data[k][habit]==='ok'){streak++;d.setDate(d.getDate()-1);}
     else break;
   }
   return streak;
 }
-
 function getBest(habit) {
-  const keys = Object.keys(data).sort();
-  let best=0, cur=0;
-  for(const k of keys) {
-    if(data[k][habit]==='ok'){cur++;if(cur>best)best=cur;}
-    else cur=0;
-  }
+  const keys=Object.keys(data).sort(); let best=0,cur=0;
+  for(const k of keys){if(data[k][habit]==='ok'){cur++;if(cur>best)best=cur;}else cur=0;}
   return best;
 }
-
 function getMonthRate(habit) {
-  const now = new Date();
-  const y=now.getFullYear(), m=now.getMonth(), today=now.getDate();
-  let ok=0, total=0;
-  for(let d=1;d<=today;d++) {
-    const k=y+'-'+pad(m+1)+'-'+pad(d);
-    const val=data[k]&&data[k][habit];
-    const isToday=(d===today);
+  const now=new Date(), y=now.getFullYear(), m=now.getMonth(), today=now.getDate();
+  let ok=0,total=0;
+  for(let d=1;d<=today;d++){
+    const k=y+'-'+pad(m+1)+'-'+pad(d), val=data[k]&&data[k][habit], isToday=(d===today);
     if(val==='ok') ok++;
-    if(!isToday) total++;
-    else if(val!==undefined) total++;
+    if(!isToday) total++; else if(val!==undefined) total++;
   }
-  return total===0 ? 0 : Math.round(ok/total*100);
+  return total===0?0:Math.round(ok/total*100);
 }
-
-function fireLabel(streak) {
-  if(streak>=30) return ' 🔥🔥🔥';
-  if(streak>=7)  return ' 🔥🔥';
-  if(streak>=3)  return ' 🔥';
-  return '';
-}
+function fireLabel(s){return s>=30?' 🔥🔥🔥':s>=7?' 🔥🔥':s>=3?' 🔥':'';}
 
 function renderToday() {
-  const k = todayStr();
-  const d = data[k]||{};
-  const now = new Date();
-  document.getElementById('todayLabel').innerHTML =
-    now.getFullYear()+'年<br>'+(now.getMonth()+1)+'月'+now.getDate()+'日';
-
-  const configs = [
-    {habit:'toilet', name:'トイレ掃除'},
-    {habit:'drink',  name:'禁酒'},
-    {habit:'trade',  name:'相場ノルマ'},
-  ];
-
-  let html = '';
-  configs.forEach(({habit, name}) => {
-    const val = d[habit];
-    const streak = getStreak(habit);
-    const rate = getMonthRate(habit);
-    const fire = fireLabel(streak);
-    const okClass = val==='ok' ? ' ok' : '';
-    const ngClass = val==='ng' ? ' ng' : '';
-    html += `
-    <div class="habit-block">
+  const k=todayStr(), d=data[k]||{}, now=new Date();
+  document.getElementById('todayLabel').innerHTML=now.getFullYear()+'年<br>'+(now.getMonth()+1)+'月'+now.getDate()+'日';
+  const configs=[{habit:'toilet',name:'トイレ掃除'},{habit:'drink',name:'禁酒'},{habit:'trade',name:'相場ノルマ'}];
+  let html='';
+  configs.forEach(({habit,name})=>{
+    const val=d[habit],streak=getStreak(habit),rate=getMonthRate(habit);
+    html+=`<div class="habit-block">
       <div class="habit-header">
-        <div class="habit-name">${name}${fire}</div>
-        <div class="streak-info">
-          <div class="streak-num">${streak}</div>
-          <div class="streak-label">日連続</div>
-        </div>
+        <div class="habit-name">${name}${fireLabel(streak)}</div>
+        <div class="streak-info"><div class="streak-num">${streak}</div><div class="streak-label">日連続</div></div>
       </div>
       <div class="big-buttons">
-        <button class="big-btn${okClass}" onclick="setToday('${habit}','ok')">✓ 達成</button>
-        <button class="big-btn${ngClass}" onclick="setToday('${habit}','ng')">✗ 未達成</button>
+        <button class="big-btn${val==='ok'?' ok':''}" onclick="setToday('${habit}','ok')">✓ 達成</button>
+        <button class="big-btn${val==='ng'?' ng':''}" onclick="setToday('${habit}','ng')">✗ 未達成</button>
       </div>
       <div class="rate-bar-wrap">
         <div class="rate-label"><span>今月の達成率</span><span>${rate}%</span></div>
@@ -527,189 +368,170 @@ function renderToday() {
       </div>
     </div>`;
   });
-  document.getElementById('page-today-inner').innerHTML = html;
+  document.getElementById('page-today-inner').innerHTML=html;
 }
 
 function renderSummary(habit) {
-  const streak=getStreak(habit), best=getBest(habit), rate=getMonthRate(habit);
-  document.getElementById('sum-'+habit).innerHTML = `
-    <div class="summary-card"><div class="s-val">${streak}</div><div class="s-lbl">現在の連続</div></div>
-    <div class="summary-card"><div class="s-val">${best}</div><div class="s-lbl">最長連続</div></div>
-    <div class="summary-card"><div class="s-val">${rate}%</div><div class="s-lbl">今月達成率</div></div>
-  `;
+  const s=getStreak(habit),b=getBest(habit),r=getMonthRate(habit);
+  document.getElementById('sum-'+habit).innerHTML=`
+    <div class="summary-card"><div class="s-val">${s}</div><div class="s-lbl">現在の連続</div></div>
+    <div class="summary-card"><div class="s-val">${b}</div><div class="s-lbl">最長連続</div></div>
+    <div class="summary-card"><div class="s-val">${r}%</div><div class="s-lbl">今月達成率</div></div>`;
 }
 
 function renderCalendar(habit) {
-  const m=calMonths[habit], y=m.getFullYear(), mo=m.getMonth();
-  const todayK=todayStr();
-  const todayDate=new Date(); todayDate.setHours(0,0,0,0);
-  document.getElementById('clabel-'+habit).textContent = y+'年'+(mo+1)+'月';
+  const m=calMonths[habit],y=m.getFullYear(),mo=m.getMonth();
+  const todayK=todayStr(), todayDate=new Date(); todayDate.setHours(0,0,0,0);
+  document.getElementById('clabel-'+habit).textContent=y+'年'+(mo+1)+'月';
   const dows=['日','月','火','水','木','金','土'];
   let html=dows.map(d=>`<div class="cal-dow">${d}</div>`).join('');
   const first=new Date(y,mo,1).getDay();
   for(let i=0;i<first;i++) html+=`<div class="cal-day empty"></div>`;
   const days=new Date(y,mo+1,0).getDate();
-  for(let d=1;d<=days;d++) {
+  for(let d=1;d<=days;d++){
     const k=y+'-'+pad(mo+1)+'-'+pad(d);
-    const cellDate=new Date(y,mo,d);
-    const isPast=cellDate<todayDate;
-    const isToday=k===todayK;
+    const isPast=new Date(y,mo,d)<todayDate, isToday=k===todayK;
     const val=data[k]&&data[k][habit];
     let cls='cal-day';
     if(val==='ok') cls+=' ok';
     else if(val==='ng') cls+=' ng';
     else if(isPast) cls+=' ng';
     if(isToday) cls+=' today-mark';
-    html+=`<div class="${cls}" onclick="openModal('${habit}','${k}')">${d}</div>`;
+    html+=`<div class="${cls}" onclick="openHabitModal('${habit}','${k}')">${d}</div>`;
   }
   document.getElementById('cal-'+habit).innerHTML=html;
 }
 
-function changeMonth(habit, dir) {
+function changeMonth(habit,dir){
   const m=calMonths[habit];
   calMonths[habit]=new Date(m.getFullYear(),m.getMonth()+dir,1);
   renderCalendar(habit); renderSummary(habit);
 }
 
-// HABIT MODAL
-function openModal(habit, dateKey) {
-  modalState={habit,dateKey};
+/* ---- HABIT MODAL ---- */
+function openHabitModal(habit,dateKey){
+  habitModalState={habit,dateKey};
   const p=dateKey.split('-');
-  document.getElementById('modal-title').textContent =
-    p[0]+'年'+parseInt(p[1])+'月'+parseInt(p[2])+'日　'+HABIT_NAMES[habit];
+  document.getElementById('modal-title').textContent=p[0]+'年'+parseInt(p[1])+'月'+parseInt(p[2])+'日　'+HABIT_NAMES[habit];
   const val=data[dateKey]&&data[dateKey][habit];
   document.getElementById('modal-ok-btn').className='modal-btn'+(val==='ok'?' ok':'');
   document.getElementById('modal-ng-btn').className='modal-btn'+(val==='ng'?' ng':'');
   document.getElementById('modal').classList.add('show');
 }
-function closeModal() { document.getElementById('modal').classList.remove('show'); }
-function closeModalOverlay(e) { if(e.target===document.getElementById('modal')) closeModal(); }
-function modalSet(val) {
-  const {habit,dateKey}=modalState;
-  if(!data[dateKey]) data[dateKey]={};
+function closeModal(){document.getElementById('modal').classList.remove('show');}
+function closeModalOverlay(e){if(e.target===document.getElementById('modal'))closeModal();}
+function modalSet(val){
+  const {habit,dateKey}=habitModalState;
+  if(!data[dateKey])data[dateKey]={};
   data[dateKey][habit]=val;
   save(); renderAll(); closeModal();
 }
-function modalClear() {
-  const {habit,dateKey}=modalState;
-  if(data[dateKey]) delete data[dateKey][habit];
+function modalClear(){
+  const {habit,dateKey}=habitModalState;
+  if(data[dateKey])delete data[dateKey][habit];
   save(); renderAll(); closeModal();
 }
 
-// DIARY
+/* ---- DIARY ---- */
 function renderDiary() {
-  const tk = todayStr();
-  const now = new Date();
-  document.getElementById('diary-today-label').textContent =
+  const tk=todayStr(), now=new Date();
+  document.getElementById('diary-today-label').textContent=
     now.getFullYear()+'年'+(now.getMonth()+1)+'月'+now.getDate()+'日（今日）';
-
-  // 今日の内容を入力欄に反映
-  const todayText = data[tk] && data[tk].diary || '';
-  const input = document.getElementById('diary-input');
-  if(document.activeElement !== input) input.value = todayText;
-
-  // 過去の日記一覧（今日を除く、新しい順）
-  const entries = Object.keys(data)
-    .filter(k => data[k].diary && k !== tk)
-    .sort((a,b) => b.localeCompare(a));
-
-  document.getElementById('diary-count').textContent = entries.length ? entries.length+'件' : '';
-
-  if(entries.length === 0) {
-    document.getElementById('diary-list').innerHTML =
-      `<div class="diary-empty">― まだ記録がありません ―</div>`;
-    return;
-  }
-
-  let html = '';
-  entries.forEach(k => {
-    const p = k.split('-');
-    const dateLabel = p[0]+'年'+parseInt(p[1])+'月'+parseInt(p[2])+'日';
-    const text = data[k].diary;
-    html += `
-      <div class="diary-entry" onclick="openDiaryModal('${k}')">
-        <div class="diary-entry-date">${dateLabel}</div>
-        <div class="diary-entry-text">${escHtml(text)}</div>
-      </div>`;
-  });
-  document.getElementById('diary-list').innerHTML = html;
+  const input=document.getElementById('diary-input');
+  if(document.activeElement!==input) input.value=data[tk]&&data[tk].diary||'';
+  renderDiaryCalendar();
 }
 
-function saveDiary() {
-  const k = todayStr();
-  const text = document.getElementById('diary-input').value.trim();
-  if(!data[k]) data[k]={};
-  if(text) data[k].diary = text;
-  else delete data[k].diary;
+function saveDiary(){
+  const k=todayStr(), text=document.getElementById('diary-input').value.trim();
+  if(!data[k])data[k]={};
+  if(text) data[k].diary=text; else delete data[k].diary;
   save();
-  const msg = document.getElementById('diary-saved-msg');
-  msg.classList.add('show');
-  setTimeout(()=>msg.classList.remove('show'), 2000);
-  renderDiary();
+  const msg=document.getElementById('diary-saved-msg');
+  msg.classList.add('show'); setTimeout(()=>msg.classList.remove('show'),2000);
+  renderDiaryCalendar();
 }
 
-function escHtml(str) {
-  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+function renderDiaryCalendar(){
+  const m=diaryCalMonth, y=m.getFullYear(), mo=m.getMonth();
+  const todayK=todayStr(), todayDate=new Date(); todayDate.setHours(0,0,0,0);
+  document.getElementById('dcal-label').textContent=y+'年'+(mo+1)+'月';
+  const dows=['日','月','火','水','木','金','土'];
+  let html=dows.map(d=>`<div class="dcal-dow">${d}</div>`).join('');
+  const first=new Date(y,mo,1).getDay();
+  for(let i=0;i<first;i++) html+=`<div class="dcal-day empty"></div>`;
+  const days=new Date(y,mo+1,0).getDate();
+  for(let d=1;d<=days;d++){
+    const k=y+'-'+pad(mo+1)+'-'+pad(d);
+    const isToday=k===todayK;
+    const hasDiary=!!(data[k]&&data[k].diary);
+    let cls='dcal-day';
+    if(hasDiary) cls+=' has-diary';
+    if(isToday) cls+=' today-mark';
+    const mark=hasDiary?`<span class="day-mark" style="color:var(--sumi)">✦</span>`:`<span class="day-mark"></span>`;
+    const onclick=hasDiary?`onclick="openDModal('${k}')"`:isToday?`onclick="document.getElementById('diary-input').focus()"`:'' ;
+    html+=`<div class="${cls}" ${onclick}><span class="day-num">${d}</span>${mark}</div>`;
+  }
+  document.getElementById('dcal').innerHTML=html;
 }
 
-// DIARY MODAL
-function openDiaryModal(k) {
-  diaryModalKey = k;
-  diaryEditMode = false;
-  const p = k.split('-');
-  document.getElementById('dm-date').textContent = p[0]+'年'+parseInt(p[1])+'月'+parseInt(p[2])+'日';
-  document.getElementById('dm-text').innerHTML = escHtml(data[k].diary||'');
-  document.getElementById('dm-edit').value = data[k].diary||'';
-  document.getElementById('dm-text').style.display = 'block';
-  document.getElementById('dm-edit').style.display = 'none';
-  document.getElementById('dm-edit-btn').textContent = '編　集';
-  document.getElementById('diary-modal').classList.add('show');
+function changeDiaryMonth(dir){
+  diaryCalMonth=new Date(diaryCalMonth.getFullYear(),diaryCalMonth.getMonth()+dir,1);
+  renderDiaryCalendar();
 }
-function closeDiaryModal() { document.getElementById('diary-modal').classList.remove('show'); }
-function closeDiaryModalOverlay(e) { if(e.target===document.getElementById('diary-modal')) closeDiaryModal(); }
 
-function toggleDiaryEdit() {
-  diaryEditMode = !diaryEditMode;
-  const textEl = document.getElementById('dm-text');
-  const editEl = document.getElementById('dm-edit');
-  const btn = document.getElementById('dm-edit-btn');
-  if(diaryEditMode) {
-    textEl.style.display='none';
-    editEl.style.display='block';
-    editEl.focus();
-    btn.textContent='保　存';
+/* ---- DIARY MODAL ---- */
+function openDModal(k){
+  dmodalKey=k; editMode=false;
+  const p=k.split('-');
+  document.getElementById('dm-date').textContent=p[0]+'年'+parseInt(p[1])+'月'+parseInt(p[2])+'日';
+  document.getElementById('dm-text').innerHTML=escHtml(data[k]&&data[k].diary||'').replace(/\n/g,'<br>');
+  document.getElementById('dm-edit').value=data[k]&&data[k].diary||'';
+  document.getElementById('dm-text').style.display='block';
+  document.getElementById('dm-edit').style.display='none';
+  document.getElementById('dm-edit-btn').textContent='編　集';
+  document.getElementById('dmodal').classList.add('show');
+}
+function closeDModal(){document.getElementById('dmodal').classList.remove('show');}
+function closeDModalOverlay(e){if(e.target===document.getElementById('dmodal'))closeDModal();}
+
+function toggleEdit(){
+  editMode=!editMode;
+  const textEl=document.getElementById('dm-text');
+  const editEl=document.getElementById('dm-edit');
+  const btn=document.getElementById('dm-edit-btn');
+  if(editMode){
+    textEl.style.display='none'; editEl.style.display='block';
+    editEl.focus(); btn.textContent='保　存';
   } else {
-    const newText = editEl.value.trim();
-    if(newText && diaryModalKey) {
-      if(!data[diaryModalKey]) data[diaryModalKey]={};
-      data[diaryModalKey].diary = newText;
+    const newText=editEl.value.trim();
+    if(dmodalKey){
+      if(!data[dmodalKey])data[dmodalKey]={};
+      if(newText) data[dmodalKey].diary=newText; else delete data[dmodalKey].diary;
       save();
     }
-    textEl.innerHTML = escHtml(newText);
-    textEl.style.display='block';
-    editEl.style.display='none';
+    textEl.innerHTML=escHtml(newText).replace(/\n/g,'<br>');
+    textEl.style.display='block'; editEl.style.display='none';
     btn.textContent='編　集';
-    renderDiary();
+    renderDiaryCalendar();
   }
 }
 
-function deleteDiaryEntry() {
-  if(!diaryModalKey) return;
-  if(data[diaryModalKey]) delete data[diaryModalKey].diary;
-  save(); renderDiary(); closeDiaryModal();
+function deleteDiary(){
+  if(dmodalKey&&data[dmodalKey]) delete data[dmodalKey].diary;
+  save(); renderDiaryCalendar(); closeDModal();
 }
 
-function renderAll() {
+/* ---- MAIN ---- */
+function renderAll(){
   renderToday();
   HABITS.forEach(h=>{renderSummary(h);renderCalendar(h);});
   renderDiary();
 }
 
-function switchTab(name) {
+function switchTab(name){
   const names=['today','toilet','drink','trade','diary'];
-  document.querySelectorAll('.tab').forEach((t,i)=>{
-    t.className='tab'+(names[i]===name?' active':'');
-  });
+  document.querySelectorAll('.tab').forEach((t,i)=>t.className='tab'+(names[i]===name?' active':''));
   document.querySelectorAll('.page').forEach(p=>p.className='page');
   document.getElementById('page-'+name).className='page active';
 }
